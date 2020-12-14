@@ -12,7 +12,7 @@ public class Singleton {
 	/**
 	 * @param args
 	 */
-	private volatile static Singleton instance;
+	private static Singleton instance;
 	
 	public static Singleton getInstanceDC() {
 		//single check

@@ -16,15 +16,19 @@ public class Deadlock {
 		Thread thread1 = new Thread(){
 			
 			public void run() {
-				synchronized(foo) {
-					System.out.println("Thread 1 has Foo");
-					
-					try {Thread.sleep(100);}catch(Exception e) {}
-					
-					synchronized(bar) {
-						System.out.println("Thread 1 has Bar");
-					
+				try {
+					synchronized(foo) {
+						System.out.println("Thread 1 has Foo");
+						
+						Thread.sleep(100);
+						
+						synchronized(bar) {
+							System.out.println("Thread 1 has Bar");
+						
+						}
 					}
+				}catch(Exception e){
+					e.printStackTrace();
 				}
 			}
 		};
@@ -32,15 +36,20 @@ public class Deadlock {
 		Thread thread2 = new Thread(){
 			
 			public void run() {
-				synchronized(bar) {
-					System.out.println("Thread 2 has Bar");
-					
-					try {Thread.sleep(100);}catch(Exception e) {}
-					
-					synchronized(foo) {
-						System.out.println("Thread 1 has Foo");
-					
+				try {
+					synchronized(bar) {
+						System.out.println("Thread 2 has Bar");
+						
+						Thread.sleep(100);
+						
+						synchronized(foo) {
+							System.out.println("Thread 1 has Foo");
+							
+						}
 					}
+					
+				}catch(Exception e){
+					e.printStackTrace();
 				}
 			}
 		};
