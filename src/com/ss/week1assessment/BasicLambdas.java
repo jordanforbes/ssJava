@@ -67,7 +67,11 @@ public class BasicLambdas {
 		Arrays.sort(arr, Utils::eFirst);
 		System.out.println(Arrays.toString(arr));
 		
+		//check if even or odd and separate with a comma
 		System.out.println(commaSeparator(testList));
+		
+		//list of strings starting with a of a size of 3
+		System.out.println(aOnly(a3List));
 
 	}
 	static List<Integer> testList = Arrays.asList(1,2,3,4,5,30,45);
@@ -83,6 +87,18 @@ public class BasicLambdas {
 			}
 		}).collect(Collectors.joining(", "));
 		
+	}
+	
+	static List<String> a3List = Arrays.asList("ace","abe","allen","ben");
+	
+	static List<String> aOnly(List<String> strList) {
+		return strList.stream().filter((str)->{
+			if(str.charAt(0)=='a' && str.length()==3) {
+				return true;
+			}else {
+				return false;
+			}
+		}).collect(Collectors.toList());
 	}
 
 }
