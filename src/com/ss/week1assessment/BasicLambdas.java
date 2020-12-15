@@ -22,13 +22,6 @@ public class BasicLambdas {
 		
 		//sort length
 		Arrays.sort(arr, (a, b)->{
-//			if(a.length()<b.length()) {
-//				return -1;
-//			}else if(a.length()>b.length()) {
-//				return 1;
-//			}else {
-//				return 0;
-//			}
 			return Integer.compare(a.length(), b.length());
 		});
 		
@@ -50,8 +43,8 @@ public class BasicLambdas {
 		
 		//e first
 		Character e = "e".charAt(0);
-		Arrays.sort(arr, (a, b)->{
-			if(a.charAt(0) == e && b.charAt(0) !=e ) {
+		Arrays.sort(arr, (a, b)->{		//sort uses a function to define how each element relates to another
+			if(a.charAt(0) == e && b.charAt(0) !=e ) { 
 				return -1;
 			}else if(a.charAt(0) != e && b.charAt(0) == e){
 				return 1;
@@ -68,7 +61,7 @@ public class BasicLambdas {
 		System.out.println(Arrays.toString(arr));
 		
 		//check if even or odd and separate with a comma
-		System.out.println(commaSeparator(testList));
+		System.out.println(evenOddComma(testList));
 		
 		//list of strings starting with a of a size of 3
 		System.out.println(aOnly(a3List));
@@ -76,23 +69,25 @@ public class BasicLambdas {
 	}
 	static List<Integer> testList = Arrays.asList(1,2,3,4,5,30,45);
 	
-	static String commaSeparator(List<Integer> intList) {
+	static String evenOddComma(List<Integer> intList) {
 
-		
-		return intList.stream().map((num)->{
+		//converts list to stream and uses modulus to test if even or odd
+		return intList.stream().map((num)->{		//map only rearranges elements it can't remove them
 			if(num%2==0) {
 				return "e"+num;
 			}else {
 				return "o"+num;
 			}
 		}).collect(Collectors.joining(", "));
+		//collects all of the parts together and adds a comma at the end
 		
 	}
 	
 	static List<String> a3List = Arrays.asList("ace","abe","allen","ben");
 	
 	static List<String> aOnly(List<String> strList) {
-		return strList.stream().filter((str)->{
+		//converts list to stream then checks if each string starts with a or is under 3 elements long
+		return strList.stream().filter((str)->{			//Filter is like map but it removes elements
 			if(str.charAt(0)=='a' && str.length()==3) {
 				return true;
 			}else {

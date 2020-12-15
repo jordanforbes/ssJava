@@ -4,9 +4,7 @@
 package com.ss.week1assessmentDateTime;
 
 import java.time.DayOfWeek;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.concurrent.ThreadLocalRandom;
 
